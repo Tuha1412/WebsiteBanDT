@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import '../../css/style.css';
 import '../../css/responsive.css';
 import '../../css/helper.css';
@@ -7,14 +7,11 @@ import '../../css/slick.css';
 import '../../css/jquery-ui.min.css';
 import '../../css/animate.css';
 import '../../css/magnific-popup.css';
-//import '../../css/material-design-iconic-font.min.css';
 import '../../css/meanmenu.css';
 import '../../css/nice-select.css';
 import '../../css/venobox.css';
 import logo from '../../images/menu/logo/1.jpg';
 import { useSelector, useDispatch } from 'react-redux';
-import { setProducts } from '../../reducers/productsReducer';
-import axios from 'axios';
 import {Link} from 'react-router-dom';
 
 
@@ -33,6 +30,7 @@ function Header(props) {
 
     const user = JSON.parse(localStorage.getItem('userLocal'));
     const checkFullname = user ? user.fullname : 'Setting';
+
     //tính tổng tiền giỏ hàng
     const total = cart && cart.reduce((object, item) => {
         let sum = parseInt(object + Number(item.price_product) * item.count);
@@ -209,7 +207,7 @@ function Header(props) {
                                     <li className="hm-minicart" >
                                         <div className="hm-minicart-trigger collapsed" data-toggle="collapse" data-target="#collapseCart" aria-expanded="false" aria-controls="collapseCart" role="button">
                                             <span className="item-icon" />
-                                            <span className="item-text">{total.toLocaleString()}
+                                            <span className="item-text">{total}
                                                 <span className="cart-item-count">{countCart}</span>
                                             </span>
                                         </div>

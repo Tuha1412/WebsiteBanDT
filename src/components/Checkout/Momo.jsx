@@ -4,7 +4,7 @@ import crypto from 'crypto';
 import { useHistory } from 'react-router-dom';
 const Momo = props => {
 
-    const {user, list, total, payment, setLoading} = props;
+    const { user, list, total, payment, setLoading } = props;
     const [error, setError] = useState(false);
     const history = useHistory();
 
@@ -65,7 +65,7 @@ const Momo = props => {
             .then(res => {
                 console.log(res);
                 if (res.data === 'Thanh Cong') {
-                   
+
                 }
             })
             .catch(err => {
@@ -75,7 +75,7 @@ const Momo = props => {
         const path = 'https://test-payment.momo.vn/gw_payment/transactionProcessor';
         const partnerCode = 'MOMO10TY20210607';
         const accessKey = '9gWpOwRExiJUZ8FG';
-        const requestId =  idOrder;
+        const requestId = idOrder;
         const secretKey = '4K9yvUyBRpY55OtUv7SaTWSL9WHNdErC';
         const orderInfo = 'Thanh toan MoMo';
         const amount = total.toString();
@@ -85,7 +85,7 @@ const Momo = props => {
         const requestType = 'captureMoMoWallet';
         const extraData = 'merchantName=Payment';
         const rawSignature = `partnerCode=${partnerCode}&accessKey=${accessKey}&requestId=${requestId}&amount=${amount}&orderId=${orderId}&orderInfo=${orderInfo}&returnUrl=${returnUrl}&notifyUrl=${notifyUrl}&extraData=${extraData}`;
-        //
+        
         var signature = crypto.createHmac('sha256', secretKey)
             .update(rawSignature)
             .digest('hex');
